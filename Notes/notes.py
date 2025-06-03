@@ -1,27 +1,23 @@
-# function declaration:
-def happy_Birthday(name):
-    print(f"Happy birthday {name}! Happy birthday to you!")
+# example of a module implementation:
+import math
 
-# name is a parameter: a temporary variable used in the function
-your_name = "Greg"
+# import a module and use an alias for it
+import math as m # import modName as modAlias
 
-# calling a function
-happy_Birthday(your_name)
+# import a specific function from a modue
+from math import e # math library w/the "e" variable
 
-# functions can use a "return" statement to return a value
-def div(numerator, denominator):
-    return numerator / denominator
+# print(help("modules")) # gives a list of modules
+# print(help("modules name")) # gives a list of vars/functions in a module
 
-num = int(div(4,2))
+# if a specific var/func is implemented it can be called without a prefix
 
-def net_price(list_price, discount=0, tax=0.05):
-    return list_price * (1 - discount) * (1 + tax)
+print(e) # can be used since it is specifically implented
 
-def hello(greeting, title, first, last):
-    print(f"{greeting} {title}.{first} {last}")
+print(math.pi) # needs "math" prefix because it is from the math module
 
-# this is a function call with keyword arguments.
-hello("Hello", title="Mr",first="James",last="Royer")
+import moduleExample as moduleExample # another file that was created and saved to be reused
+# moduleExample is in the same folder as notes so that this import functions
 
-# cannot rearrange parameters - produces an error
-hello(first="Bob",greeting="Hello","Mrs", "Gary")
+cubed_number = moduleExample.cube(4)
+print(cubed_number)
