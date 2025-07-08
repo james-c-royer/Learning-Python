@@ -48,7 +48,7 @@ hangman_art = {0: ("  ",
                    "/ \\ "),}
 
 print(secretWord)
-print("Let's play hangman! Your secret secretWord has been generated...")
+print("Let's play hangman! Your secret word has been generated...")
 
 
 while True:
