@@ -1,14 +1,20 @@
-from class import Car
+class Animal():
+    pass
 
+class Prey(Animal):
+    def flee(self):
+        print("This animal is fleeing")
 
-# calling the initilizer function -- self is provided behind
-# the scenes
-car1 = Car("Saturn Aura", 2009, "Silver", False)
+class Predator(Animal):
+    def hunt(self):
+        print("This animal is hunting")
 
-# print(car1) would give you memory address of the car
+class Rabbit(Prey):
+    pass
 
-print(car1.model) # this is how you print specific attributes
+class Hawk(Predator):
+    pass
 
-# calling methods
-car1.drive()
-car1.stop()
+# fish hunt other fish, but are also preyed upon
+class Fish(Prey, Predator):
+    pass
