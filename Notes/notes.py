@@ -1,43 +1,66 @@
-class Student:
+# normal access w/property decorator
+class Rectangle:
+    def __init__(self, width, height):
+        # "_" before the attribute indicates that it is
+        # private and can't be accessed outside of 
+        self._width = width
+        self._height = height
 
-    # automatically called when an object of type Student
-    # is declared
-    def __init__(self, name, gpa):
-        self.name = name
-        self.gpa = gpa
 
-    # defines what "equals" is for student objects. If
-    # we check if student1 == student2, it will return
-    # T/F depending on if the names are the same
-    def __eq__ (self, other):
-        return self.name == other.name
+# begin "getter" methods: specifies the format when
+# the values are called
+
+    @property
+    def width(self):
+        return f"{self._width:.1f}cm"
+
+    @property
+    def height(self):
+        return f"{self._height:.1f}cm"
     
-    # by default, printing an object returns its memory address
-    # defining str changes what happens when it is printed 
-    def __str__(self):
-        return f"I am {self.name} and my GPA is {self.gpa}"
-    
-    # defines greater than (>)
-    def __gt__(self, other):
-        return(self.gpa > other.gpa)
-    
-    # defines indexing an  object. Without a definition,
-    # this would return a TypeError 
-    def __getitem__(self, key):
-        if key == "name":
-            return self.name
-        elif key == "gpa" or "GPA":
-            return self.gpa
+# end "getter" methods    
+
+# begin "setter" methods: define how to set (write) a
+# value for an attribute
+
+    @width.setter
+    def width(self, new_width):
+        if new_width > 0:
+            self._width = new_width
         else:
-            return f"{key} not found in the object"
-        
-    # other dunder methods can be found at:
-    # https://realpython.com/python-magic-methods/
-    
-student1 = Student("Stacy", 3.2)
-student2 = Student("Stacy", 3)
+            print("Width must be > 0")
 
-print(student1 == student2) # True
-print(student1) # I am Stacy and my GPA is 3.2
-print(student2 > student1) # False
-print(student1["name"]) # Stacy
+    @height.setter
+    def height(self, new_height):
+        if new_height > 0:
+            self._width = new_height
+        else:
+            print("Height must be > 0")
+
+# end "setter" methods
+
+# begin "deleter" methods:
+
+    @width.deleter
+    def width(self):
+        del self._width
+        print("Width has been deleted")
+
+    @height.deleter
+    def height(self):
+        del self._width
+        print("Height has been deleted")
+
+rectangle = Rectangle(3, 4)
+
+
+# still "works" but returns a warning that these are
+# protected class members
+print(rectangle.width) #3
+print(rectangle.height) #4
+
+
+del rectangle.width
+# no longer works: there is no "._width" element for the
+# rectangle object
+print(rectangle.width) #3
